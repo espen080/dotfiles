@@ -10,6 +10,8 @@ TARGET_DIR="$HOME"
 ITEMS=(
   ".config/ghostty"
   ".config/nvim"
+  ".config/oh-my-posh"
+  ".bashrc"
 )
 
 # Dry-run mode
