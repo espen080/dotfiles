@@ -1,3 +1,9 @@
-theme=rose-pine
-background-opacity=0.95
+# Set the color theme
+theme = rose-pine
+background-opacity = 0.95
+
+# Remap reload because the default is annoying to reach
 keybind = ctrl+shift+r=reload_config
+
+# Do not ask for confirmation when closing window
+confirm-close-surface = false
