@@ -11,6 +11,7 @@ ITEMS=(
   ".config/ghostty"
   ".config/nvim"
   ".config/oh-my-posh"
+  ".config/hypr"
   ".bashrc"
 )
 
