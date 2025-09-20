@@ -1,5 +1,5 @@
 # Set the color theme
-theme = rose-pine
+theme = Rose Pine
 background-opacity = 0.95
 
 # Remap reload because the default is annoying to reach
