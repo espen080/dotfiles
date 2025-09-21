@@ -1,0 +1,19 @@
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+[init]
+	defaultBranch = main
+[user]
+	name = Espen Klungland
+	email = espen.klungland@gmail.com
+	signingkey = /home/espen/.ssh/id_ed25519.pub
+[gpg]
+        format = ssh
+[commit]
+        gpgsign = true
+[pull]
+        rebase = false
+[core]
+        editor = nvim

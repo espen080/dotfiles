@@ -12,6 +12,7 @@ ITEMS=(
   ".config/nvim"
   ".config/oh-my-posh"
   ".config/hypr"
+  ".config/git"
   ".bashrc"
 )
 
