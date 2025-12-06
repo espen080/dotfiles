@@ -7,3 +7,6 @@ keybind = ctrl+shift+r=reload_config
 
 # Do not ask for confirmation when closing window
 confirm-close-surface = false
+
+# Slowdown mouse scrolling
+mouse-scroll-multiplier = 0.95
