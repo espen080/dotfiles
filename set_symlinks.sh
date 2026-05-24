@@ -13,6 +13,8 @@ ITEMS=(
   ".config/git"
   ".config/starship.toml"
   ".bashrc"
+  ".local/bin/gaming"
+  ".local/bin/steam-bp.sh"
 )
 
 # Dry-run mode

@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+
+# Usage:
+#   gaming on
+#   gaming off
+
+set -euo pipefail
+
+# ===== CONFIG =====
+MAIN_MONITOR="DP-1"
+SECOND_MONITOR="HDMI-A-1"
+
+# Main monitor: 1440p 144Hz
+MAIN_MODE="2560x1440@144"
+MAIN_POS="0x0"
+MAIN_SCALE="1"
+
+# Second monitor: 4K 60Hz
+SECOND_MODE="3840x2160@60"
+SECOND_POS="2560x0"
+SECOND_SCALE="1.5"
+# ==================
+
+if [[ $# -ne 1 ]]; then
+    echo "Usage: $0 {on|off}"
+    exit 1
+fi
+
+case "$1" in
+    on)
+        echo "Enabling $SECOND_MONITOR and disabling $MAIN_MONITOR..."
+
+        hyprctl keyword monitor \
+            "$SECOND_MONITOR,$SECOND_MODE,$SECOND_POS,$SECOND_SCALE"
+
+        hyprctl keyword monitor \
+            "$MAIN_MONITOR,disable"
+
+        hyprctl dispatch workspace 1
+        ;;
+
+    off)
+        echo "Enabling $MAIN_MONITOR and disabling $SECOND_MONITOR..."
+
+        hyprctl keyword monitor \
+            "$MAIN_MONITOR,$MAIN_MODE,$MAIN_POS,$MAIN_SCALE"
+
+        hyprctl keyword monitor \
+            "$SECOND_MONITOR,disable"
+
+        hyprctl dispatch workspace 1
+        ;;
+
+    *)
+        echo "Invalid argument: $1"
+        echo "Usage: $0 {on|off}"
+        exit 1
+        ;;
+esac
