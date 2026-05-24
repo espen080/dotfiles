@@ -11,6 +11,7 @@ ITEMS=(
   ".config/ghostty"
   ".config/hypr"
   ".config/git"
+  ".config/starship.toml"
   ".bashrc"
 )
 
