@@ -1,0 +1,56 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "theme" : "system",
+  "permission": {
+    "*": "ask",
+    "websearch": "allow",
+    "webfetch": "allow",
+    "lsp": "allow"
+  },
+  "enabled_providers": ["ollama"],
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "gemma4:12b": {
+          "name": "Gemma4 (12b)"
+        },
+        "gemma4:26b": {
+          "name": "Gemma4 (26b)"
+        },
+        "gemma4:31b": {
+          "name": "Gemma4 (31b)"
+        },
+	"gemma4:e4b": {
+	  "name": "Gemma4 (4b)"
+	}
+  	"qwen3-coder:30b": {
+	  "name": "Qwen3 coder"
+	}
+	"qwen3.6:27b": {
+	  "name": "Qwen3.6 (27b)"
+	}
+
+	"qwen3.6:35b": {
+	  "name": "Qwen3.6 (35b)"
+	}
+
+	"nemotron3:33b": {
+	  "name": "Nemotron3"
+	}
+
+	"north-mini-code-1.0:q4_K_M": {
+	  "name": "North mini code 1.0"
+	}
+
+	"gpt-oss:20b": {
+	  "name": "GPT OSS"
+	}
+      }
+    },
+  }
+}

@@ -12,6 +12,7 @@ ITEMS=(
   ".config/hypr"
   ".config/git"
   ".config/alacritty"
+  ".config/opencode"
   ".config/starship.toml"
   ".bashrc"
   ".local/bin/gaming"
