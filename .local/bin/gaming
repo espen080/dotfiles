@@ -51,6 +51,12 @@ case "$1" in
         hyprctl dispatch workspace 1
         ;;
 
+    both)
+        hyprctl keyword monitor \
+            "$SECOND_MONITOR,$SECOND_MODE,$SECOND_POS,$SECOND_SCALE"
+        hyprctl keyword monitor \
+            "$MAIN_MONITOR,$MAIN_MODE,$MAIN_POS,$MAIN_SCALE"
+        ;;
     *)
         echo "Invalid argument: $1"
         echo "Usage: $0 {on|off}"

@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 
 CONTROLLER_VENDOR="057e"
 CONTROLLER_PRODUCT="2009"
