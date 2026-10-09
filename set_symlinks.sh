@@ -8,15 +8,14 @@ TARGET_DIR="$HOME"
 
 # Files/directories to symlink
 ITEMS=(
-  ".config/ghostty"
-  ".config/hypr"
-  ".config/git"
   ".config/alacritty"
+  ".config/hypr"
+  ".config/noctalia"
   ".config/opencode"
   ".config/starship.toml"
+  ".config/git"
+  ".config/fish"
   ".bashrc"
-  ".local/bin/gaming"
-  ".local/bin/steam-bp.sh"
 )
 
 # Dry-run mode
