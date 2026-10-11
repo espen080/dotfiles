@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # Usage:
-#   gaming on
-#   gaming off
-#   gaming both
+#   monitors main
+#   monitors tv
+#   monitors both
 
 set -euo pipefail
 
@@ -23,7 +23,7 @@ SECOND_SCALE="1.5"
 # ==================
 
 usage() {
-    echo "Usage: $0 {on|off|both}" >&2
+    echo "Usage: $0 {main|tv|both}" >&2
 }
 
 if [[ $# -ne 1 ]]; then
@@ -32,7 +32,7 @@ if [[ $# -ne 1 ]]; then
 fi
 
 case "$1" in
-    on|off|both) ;;
+    main|tv|both) ;;
     *)
         echo "Invalid argument: $1" >&2
         usage
@@ -54,7 +54,7 @@ disable_monitor() {
 }
 
 case "$1" in
-    on)
+    tv)
         echo "Enabling $SECOND_MONITOR and disabling $MAIN_MONITOR..."
 
         enable_monitor "$SECOND_MONITOR" "$SECOND_MODE" "$SECOND_POS" "$SECOND_SCALE"
@@ -65,7 +65,7 @@ case "$1" in
         hyprctl eval 'hl.dispatch(hl.dsp.focus({ workspace = 1 }))'
         ;;
 
-    off)
+    main)
         echo "Enabling $MAIN_MONITOR and disabling $SECOND_MONITOR..."
 
         enable_monitor "$MAIN_MONITOR" "$MAIN_MODE" "$MAIN_POS" "$MAIN_SCALE"

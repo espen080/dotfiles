@@ -2,25 +2,36 @@
 ui_scale = 1.0
 
 [bar.default]
+start = [ "workspaces", "group:g1" ]
 center = ["clock" ]
+end = [ "group:end" ]
 concave_edge_corners = false
-end = [ "media", "spacer_1", "tray", "notifications", "network", "volume", "session" ]
 margin_edge = 0
 margin_ends = 0
+background_opacity = 0
 radius_bottom_left = 0
 radius_bottom_right = 0
 radius_top_left = 0
 radius_top_right = 0
 scale = 1.0
-start = [ "workspaces", "group:g1" ]
 thickness = 35
+capsule = true
+capsule_opacity = 0.7
 
     [[bar.default.capsule_group]]
     border = ""
-    fill = "on_secondary"
+    fill = "on_primary"
     id = "g1"
     members = [ "temp", "sysmon_2", "sysmon_3" ]
-    opacity = 1.0
+    opacity = 0.7
+    padding = 6.0
+
+    [[bar.default.capsule_group]]
+    border = ""
+    fill = "on_primary"
+    id = "end"
+    members = [ "media", "tray", "notifications", "network", "volume", "session" ]
+    opacity = 0.7
     padding = 6.0
 
 [wallpaper]
@@ -29,6 +40,7 @@ fill_mode = "fit"
 
 [wallpaper.default]
 path = "/home/espen/.config/noctalia/futurism.png"
+
 [shell]
 clipboard_image_action_command = "swash --stdin --name \"swash-$(date +'%Y-%m-%d_%H:%M:%S').png\""
 launch_apps_as_systemd_services = true
@@ -42,6 +54,7 @@ settings_show_advanced = true
     open_near_click_control_center = true
     session_placement = "floating"
     session_position = "center"
+    transparency_mode = "glass"
 
     [shell.screenshot]
     copy_to_clipboard = false
@@ -53,39 +66,37 @@ settings_show_advanced = true
     action = "lock"
     countdown_seconds = 0.0
     enabled = true
-    shortcut = "1"
+    shortcut = "l"
     variant = "default"
 
     [[shell.session.actions]]
     action = "logout"
     countdown_seconds = 0.0
     enabled = true
-    shortcut = "2"
-    variant = "default"
-
-    [[shell.session.actions]]
-    action = "lock_and_suspend"
-    countdown_seconds = 3.0
-    enabled = true
-    shortcut = "3"
+    shortcut = "e"
     variant = "default"
 
     [[shell.session.actions]]
     action = "reboot"
     countdown_seconds = 3.0
     enabled = true
-    shortcut = "4"
+    shortcut = "r"
     variant = "default"
 
     [[shell.session.actions]]
     action = "shutdown"
     countdown_seconds = 3.0
     enabled = true
-    shortcut = "5"
+    shortcut = "s"
     variant = "destructive"
 
 [system.monitor]
 gpu_poll_seconds = 2
+
+[shell.launcher]
+width = 560
+show_icons = false
+compact = true
 
 [theme]
 builtin = "Rosé Pine"
@@ -98,21 +109,18 @@ wallpaper_scheme = "m3-tonal-spot"
 
 
 [widget.clock]
-color = "secondary"
+capsule_fill = "on_primary"
 format = "{:%H:%M %a %d/%m}"
-
-[widget.launcher]
-color = "secondary"
 
 [widget.media]
 hide_when_no_media = true
 title_scroll = "on_hover"
 
 [widget.network]
-color = "secondary"
+show_label = false
 
 [widget.notifications]
-color = "secondary"
+hide_when_no_unread = true
 
 [widget.session]
 color = "error"
@@ -136,18 +144,15 @@ type = "sysmon"
 
 [widget.tray]
 capsule = true
-capsule_fill = "on_secondary"
-
-[widget.volume]
-color = "secondary"
 
 [widget.workspaces]
+style = "minimal"
 active_pill_size = 2.5
 capsule = true
 capsule_fill = "on_primary"
 inactive_pill_size = 1.0
 pill_scale = 0.80
-show_labels = false
+show_labels = true
 
 [lockscreen_widgets]
 enabled = false
