@@ -16,6 +16,7 @@ ITEMS=(
   ".config/git"
   ".config/fish"
   ".bashrc"
+  ".local/bin"
 )
 
 # Dry-run mode

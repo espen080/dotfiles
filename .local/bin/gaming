@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+
+# Usage:
+#   gaming on
+#   gaming off
+#   gaming both
+
+set -euo pipefail
+
+# ===== CONFIG =====
+MAIN_MONITOR="DP-1"
+SECOND_MONITOR="HDMI-A-1"
+
+# Main monitor: 1440p 144Hz
+MAIN_MODE="2560x1440@144"
+MAIN_POS="0x0"
+MAIN_SCALE="1"
+
+# Second monitor: 4K 60Hz
+SECOND_MODE="3840x2160@60"
+SECOND_POS="2560x0"
+SECOND_SCALE="1.5"
+# ==================
+
+usage() {
+    echo "Usage: $0 {on|off|both}" >&2
+}
+
+if [[ $# -ne 1 ]]; then
+    usage
+    exit 1
+fi
+
+case "$1" in
+    on|off|both) ;;
+    *)
+        echo "Invalid argument: $1" >&2
+        usage
+        exit 1
+        ;;
+esac
+
+if ! command -v hyprctl >/dev/null 2>&1; then
+    echo "Error: hyprctl is required." >&2
+    exit 1
+fi
+
+enable_monitor() {
+    hyprctl eval "hl.monitor({ output = '$1', mode = '$2', position = '$3', scale = $4, disabled = false })"
+}
+
+disable_monitor() {
+    hyprctl eval "hl.monitor({ output = '$1', disabled = true })"
+}
+
+case "$1" in
+    on)
+        echo "Enabling $SECOND_MONITOR and disabling $MAIN_MONITOR..."
+
+        enable_monitor "$SECOND_MONITOR" "$SECOND_MODE" "$SECOND_POS" "$SECOND_SCALE"
+
+        disable_monitor "$MAIN_MONITOR"
+
+        hyprctl eval "hl.dispatch(hl.dsp.focus({ monitor = '$SECOND_MONITOR' }))"
+        hyprctl eval 'hl.dispatch(hl.dsp.focus({ workspace = 1 }))'
+        ;;
+
+    off)
+        echo "Enabling $MAIN_MONITOR and disabling $SECOND_MONITOR..."
+
+        enable_monitor "$MAIN_MONITOR" "$MAIN_MODE" "$MAIN_POS" "$MAIN_SCALE"
+
+        disable_monitor "$SECOND_MONITOR"
+
+        hyprctl eval "hl.dispatch(hl.dsp.focus({ monitor = '$MAIN_MONITOR' }))"
+        hyprctl eval 'hl.dispatch(hl.dsp.focus({ workspace = 1 }))'
+        ;;
+
+    both)
+        echo "Enabling $MAIN_MONITOR and $SECOND_MONITOR..."
+        enable_monitor "$SECOND_MONITOR" "$SECOND_MODE" "$SECOND_POS" "$SECOND_SCALE"
+        enable_monitor "$MAIN_MONITOR" "$MAIN_MODE" "$MAIN_POS" "$MAIN_SCALE"
+        ;;
+esac
