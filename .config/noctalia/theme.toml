@@ -1,0 +1,8 @@
+[theme]
+builtin = "Rosé Pine"
+mode = "dark"
+source = "builtin"
+wallpaper_scheme = "m3-tonal-spot"
+
+    [theme.templates]
+    builtin_ids = [ "btop", "gtk3", "gtk4", "kcolorscheme", "qt" ]

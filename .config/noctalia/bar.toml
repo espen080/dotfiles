@@ -1,0 +1,78 @@
+[bar.default]
+start = [ "workspaces", "group:g1" ]
+center = ["clock" ]
+end = [ "group:end" ]
+concave_edge_corners = false
+margin_edge = 0
+margin_ends = 0
+background_opacity = 0
+radius_bottom_left = 0
+radius_bottom_right = 0
+radius_top_left = 0
+radius_top_right = 0
+scale = 1.0
+thickness = 35
+capsule = true
+capsule_opacity = 0.7
+
+    [[bar.default.capsule_group]]
+    border = ""
+    fill = "on_primary"
+    id = "g1"
+    members = [ "temp", "sysmon_2", "sysmon_3" ]
+    opacity = 0.7
+    padding = 6.0
+
+    [[bar.default.capsule_group]]
+    border = ""
+    fill = "on_primary"
+    id = "end"
+    members = [ "media", "tray", "notifications", "network", "volume", "session" ]
+    opacity = 0.7
+    padding = 6.0
+
+[widget.clock]
+capsule_fill = "on_primary"
+format = "{:%H:%M %a %d/%m}"
+
+[widget.media]
+hide_when_no_media = true
+title_scroll = "on_hover"
+
+[widget.network]
+show_label = false
+
+[widget.notifications]
+hide_when_no_unread = true
+
+[widget.session]
+color = "error"
+
+[widget.spacer_1]
+type = "spacer"
+
+[widget.temp]
+show_value = false
+
+[widget.sysmon_2]
+glyph = "gpu-usage"
+show_value = false
+stat = "gpu_temp"
+type = "sysmon"
+
+[widget.sysmon_3]
+glyph = "cpu-2"
+stat = "ram_used"
+type = "sysmon"
+
+[widget.tray]
+capsule = true
+
+[widget.workspaces]
+style = "minimal"
+active_pill_size = 2.5
+capsule = true
+capsule_fill = "on_primary"
+inactive_pill_size = 1.0
+pill_scale = 0.80
+show_labels = true
