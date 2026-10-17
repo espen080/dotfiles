@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# Fall back to a normal launch if detection fails.
+cwd=""
+
+active_window=$(hyprctl activewindow -j 2>/dev/null)
+window_class=$(jq -r '.class // empty' <<< "$active_window" 2>/dev/null)
+terminal_pid=$(jq -r '.pid // empty' <<< "$active_window" 2>/dev/null)
+
+if [[ "${window_class,,}" == "alacritty" && "$terminal_pid" =~ ^[0-9]+$ ]]; then
+    # Read Fish's cwd, not Alacritty's original startup directory.
+    shell_pid=$(pgrep -P "$terminal_pid" -x fish 2>/dev/null | head -n 1)
+
+    if [[ -n "$shell_pid" ]]; then
+        cwd=$(readlink -e "/proc/$shell_pid/cwd" 2>/dev/null)
+    fi
+fi
+
+if [[ -n "$cwd" && -d "$cwd" ]]; then
+    exec uwsm app -- alacritty --working-directory "$cwd"
+else
+    exec uwsm app -- alacritty
+fi

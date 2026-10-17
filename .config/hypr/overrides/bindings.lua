@@ -18,6 +18,10 @@ for i = 1, 10 do
 end
 
 -- Application shortcuts.
+-- Inherit the focused Alacritty shell's directory when opening a terminal.
+hl.unbind(mainMod .. " + Return")
+hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd('bash "$HOME/.config/hypr/scripts/terminal-launch"'))
+
 -- Replace the default window-kill action with Noctalia's session menu.
 hl.unbind(mainMod .. " + Escape")
 hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("noctalia msg panel-toggle session"))
